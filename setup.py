@@ -48,7 +48,7 @@ setup(
     name=_project,
     version=_version,
     license=_license,
-    description=_read('API Client for sailplay.ru'),
+    description='API Client for sailplay.ru',
     long_description=_read('README.rst'),
     platforms=('Any'),
     keywords = "django flask sqlalchemy testing mock stub mongoengine data".split(), # noqa
