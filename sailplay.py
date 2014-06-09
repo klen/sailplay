@@ -1,6 +1,6 @@
 """ Agnostic API for sailplay.ru """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __project__ = "sailplay"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "BSD"
