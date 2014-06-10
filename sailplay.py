@@ -1,6 +1,6 @@
 """ Agnostic API for sailplay.ru """
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __project__ = "sailplay"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "BSD"
@@ -91,10 +91,11 @@ class SailPlayClient(object):
         json = response.json()
 
         if json['status'] == 'error':
+            message = json['message'].encode('utf-8')
             if self.params['silence']:
-                logger.error(json['message'])
+                logger.error(message)
             else:
-                raise SailPlayException(json['message'])
+                raise SailPlayException(message)
 
         logger.debug(json)
         return json
