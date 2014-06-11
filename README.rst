@@ -3,7 +3,7 @@ API sailplay.ru
 
 .. _description:
 
-API sailplay.ru -- Short description.
+Python client for API sailplay.ru
 
 .. _badges:
 
@@ -71,7 +71,6 @@ Additional params
     client = SailPlayClient(
         pin, store_department_id, store_department_key,
         token="token-here", # Set token manually (default "")
-        version="v2",       # Set API version prefix (default "v2")
         silence=True,       # Dont fail on API errors (default False)
         loglevel="debug",   # Set log level (default INFO)
     )
@@ -108,6 +107,9 @@ Sailplay have nice and easy syntax. Just have a look: ::
     # And etc. I hope you make decision how the client works :)
 
 
+For now client chooses API version automaticaly.
+
+
 Context manager
 ---------------
 
@@ -116,6 +118,7 @@ You could redefine the client settings in context: ::
     with client.ctx(silence=True):
         # Errors will not be raised here
         client.api.users.add(user_phone='...', first_name='...', last_name='...')
+
 
 Raw api request
 ---------------
@@ -127,12 +130,14 @@ You could make raw request to sailplay API: ::
 
 Have a nice codding!
 
+
 Bug tracker
 ===========
 
 If you have any suggestions, bug reports or
 annoyances please report them to the issue tracker
 at https://github.com/klen/sailplay/issues
+
 
 .. _contributing:
 

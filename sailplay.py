@@ -14,6 +14,17 @@ from copy import deepcopy
 logger = logging.getLogger('sailplay')
 rs_logger = logging.getLogger('requests')
 
+# Dirty code for annoying sailplay API
+SAILPLAY_API_DEFAULT_VERSION = 'v2'
+SAILPLAY_API_SCHEME = dict(
+    (method, version)
+    for version, methods in {
+        'v1': ('login', 'purchases', 'ecommerce'),
+        'v2': ('gifts', 'users', 'events', 'points', 'partners', 'basket'),
+    }.items()
+    for method in methods
+)
+
 
 class SailPlayException(Exception):
     pass
@@ -46,7 +57,7 @@ class SailPlayClient(object):
     api_url = 'https://sailplay.ru/api'
 
     def __init__(self, pin_code, store_department_id, store_department_key,
-                 token=None, silence=False, version='v2', loglevel='INFO'):
+                 token=None, silence=False, loglevel='INFO'):
         self.params = locals()
 
     @property
@@ -70,8 +81,10 @@ class SailPlayClient(object):
 
     def request(self, method, url, data=None):
         """ Request sailplay API. """
+        action = url.split('/')[0]
+        version = SAILPLAY_API_SCHEME.get(action, 'v2')
         url = "%s/%s/%s/" % (
-            self.api_url, self.params.get('version'), url.strip('/'))
+            self.api_url, version, url.strip('/'))
         params = dict(self.credentials)
 
         loglevel = self.params.get('loglevel', 'INFO')
