@@ -1,6 +1,6 @@
 """ Agnostic API for sailplay.ru """
 
-__version__ = "0.1.3"
+__version__ = "0.1.4"
 __project__ = "sailplay"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "BSD"
@@ -55,6 +55,7 @@ class SailPlayClient(object):
     """ SailPlay client. """
 
     api_url = 'https://sailplay.ru/api'
+    error = SailPlayException
 
     def __init__(self, pin_code, store_department_id, store_department_key,
                  token=None, silence=False, loglevel='INFO'):
@@ -99,7 +100,7 @@ class SailPlayClient(object):
                 method, url, params=params, data=data)
             response.raise_for_status()
         except rs.HTTPError as exc:
-            raise SailPlayException(exc)
+            raise self.error(exc)
 
         json = response.json()
 
@@ -108,7 +109,7 @@ class SailPlayClient(object):
             if self.params['silence']:
                 logger.error(message)
             else:
-                raise SailPlayException(message)
+                raise self.error(message)
 
         logger.debug(json)
         return json
