@@ -7,12 +7,12 @@ Python client for API sailplay.ru
 
 .. _badges:
 
-.. image:: https://secure.travis-ci.org/klen/sailplay.png?branch=master
+.. image:: https://secure.travis-ci.org/klen/sailplay.png?branch=develop
     :target: http://travis-ci.org/klen/sailplay
     :alt: Build Status
 
-.. image:: https://coveralls.io/repos//sailplay/badge.png?branch=master
-    :target: https://coveralls.io/r/klen/sailplay
+.. image:: https://coveralls.io/repos/klen/sailplay/badge.png?branch=develop
+    :target: https://coveralls.io/r/klen/sailplay?branch=develop
     :alt: Coverals
 
 .. image:: https://pypip.in/d/sailplay/badge.png
