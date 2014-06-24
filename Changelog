@@ -1,3 +1,7 @@
+2014-06-24  klen
+
+	* Return JSON on errors when silence is True
+
 2014-06-11  klen
 
 	* Version 0.1.3
