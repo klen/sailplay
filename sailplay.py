@@ -1,6 +1,6 @@
 """ Agnostic API for sailplay.ru """
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 __project__ = "sailplay"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "BSD"
@@ -96,20 +96,15 @@ class SailPlayClient(object):
             params.update(data)
 
         try:
-            response = rs.api.request(
-                method, url, params=params, data=data)
+            response = rs.api.request(method, url, params=params, data=data)
             response.raise_for_status()
         except rs.HTTPError as exc:
             raise self.error(exc)
 
         json = response.json()
 
-        if json['status'] == 'error':
-            message = json['message'].encode('utf-8')
-            if self.params['silence']:
-                logger.error(message)
-            else:
-                raise self.error(message)
+        if json['status'] == 'error' and not self.params['silence']:
+            raise self.error(json['message'].encode('utf-8'))
 
         logger.debug(json)
         return json
