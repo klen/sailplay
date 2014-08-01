@@ -104,6 +104,11 @@ Sailplay have nice and easy syntax. Just have a look: ::
     # Create purchase http://sailplay.ru/api/v2/purchases/new/?...
     client.api.purchases.new(**params)
 
+    # You also could use getitem syntax for params
+    client.api.users['custom-vars'](**params)
+    # Same as
+    client.api['users']['custom-vars'](**params)
+
     # And etc. I hope you make decision how the client works :)
 
 

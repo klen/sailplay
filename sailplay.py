@@ -44,6 +44,8 @@ class SailPlayAPI(object):
         self.session.append(name)
         return self
 
+    __getitem__ = __getattr__
+
     def __call__(self, *args, **data):
         """ Call API. """
         url = '/'.join(self.session)
