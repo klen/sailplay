@@ -7,12 +7,12 @@ Python client for API sailplay.ru
 
 .. _badges:
 
-.. image:: https://secure.travis-ci.org/klen/sailplay.png?branch=master
+.. image:: https://secure.travis-ci.org/klen/sailplay.png?branch=develop
     :target: http://travis-ci.org/klen/sailplay
     :alt: Build Status
 
-.. image:: https://coveralls.io/repos//sailplay/badge.png?branch=master
-    :target: https://coveralls.io/r/klen/sailplay
+.. image:: https://coveralls.io/repos/klen/sailplay/badge.png?branch=develop
+    :target: https://coveralls.io/r/klen/sailplay?branch=develop
     :alt: Coverals
 
 .. image:: https://pypip.in/d/sailplay/badge.png
@@ -103,6 +103,11 @@ Sailplay have nice and easy syntax. Just have a look: ::
 
     # Create purchase http://sailplay.ru/api/v2/purchases/new/?...
     client.api.purchases.new(**params)
+
+    # You also could use getitem syntax for params
+    client.api.users['custom-vars'](**params)
+    # Same as
+    client.api['users']['custom-vars'](**params)
 
     # And etc. I hope you make decision how the client works :)
 

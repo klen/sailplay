@@ -1,6 +1,6 @@
 """ Agnostic API for sailplay.ru """
 
-__version__ = "0.1.5"
+__version__ = "0.2.0"
 __project__ = "sailplay"
 __author__ = "Kirill Klenov <horneds@gmail.com>"
 __license__ = "BSD"
@@ -43,6 +43,8 @@ class SailPlayAPI(object):
     def __getattr__(self, name):
         self.session.append(name)
         return self
+
+    __getitem__ = __getattr__
 
     def __call__(self, *args, **data):
         """ Call API. """
